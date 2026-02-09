@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('Allotment Result')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-9">
+            <div class="app-card p-4 p-md-5 app-fade-up">
+                <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                    <div>
+                        <h3 class="app-section-title mb-1">Allotment Result</h3>
+                        <div class="app-muted">
+                            IPO #<span class="fw-semibold" th:text="${ipo.ipoId}"></span>
+                            · <span th:text="${ipo.company != null ? ipo.company.companyName : 'N/A'}"></span>
+                        </div>
+                    </div>
+                    <span class="badge text-bg-secondary" th:text="${ipo.status}"></span>
+                </div>
+
+                <div th:if="${run == null}" class="alert alert-warning mb-0">
+                    <i class="bi bi-exclamation-triangle me-1"></i>No allotment run found.
+                </div>
+
+                <div th:if="${run != null}">
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="p-3 rounded-3 bg-light border">
+                                <div class="small text-muted">Method</div>
+                                <div class="fw-semibold" th:text="${run.method}"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="p-3 rounded-3 bg-light border">
+                                <div class="small text-muted">Random Seed</div>
+                                <div class="fw-semibold" th:text="${run.randomSeed}"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="p-3 rounded-3 bg-light border">
+                                <div class="small text-muted">Executed At</div>
+                                <div class="fw-semibold" th:text="${run.executedAt}"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="p-3 rounded-3 bg-light border">
+                                <div class="small text-muted">Status</div>
+                                <div class="fw-semibold" th:text="${run.status}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2 mt-4">
+                    <a class="btn btn-outline-dark btn-app" th:href="@{/admin/allotment}">
+                        <i class="bi bi-arrow-left me-1"></i>Back
+                    </a>
+                    <a class="btn btn-outline-primary btn-app" th:href="@{/admin/compliance}">
+                        <i class="bi bi-clipboard-check me-1"></i>Compliance
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

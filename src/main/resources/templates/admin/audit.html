@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('Audit Trail')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="app-card p-4 p-md-5 app-fade-up">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+            <div>
+                <h3 class="app-section-title mb-1">Audit Trail</h3>
+                <div class="app-muted">Latest 200 auditable events.</div>
+            </div>
+            <a class="btn btn-outline-dark btn-app" th:href="@{/admin/dashboard}">
+                <i class="bi bi-speedometer2 me-1"></i>Dashboard
+            </a>
+        </div>
+
+        <div th:if="${audits == null || #lists.isEmpty(audits)}" class="alert alert-info mb-0">
+            No audit events found.
+        </div>
+
+        <div th:if="${audits != null && !#lists.isEmpty(audits)}" class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Time</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Entity</th>
+                    <th>ID</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="a : ${audits}">
+                    <td class="text-muted small" th:text="${a.createdAt}"></td>
+                    <td th:text="${a.user != null ? a.user.username : 'SYSTEM'}"></td>
+                    <td>
+                        <span class="badge text-bg-dark" th:text="${a.action}"></span>
+                    </td>
+                    <td th:text="${a.entityType}"></td>
+                    <td th:text="${a.entityId}"></td>
+                    <td class="text-muted" th:text="${a.description}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

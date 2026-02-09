@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('Issuer Dashboard')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="app-card p-4 p-md-5 app-fade-up">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+            <div>
+                <h3 class="app-section-title mb-1">Issuer Dashboard</h3>
+                <div class="app-muted">
+                    Maintain company profile and create IPOs (no admin approval required).
+                </div>
+            </div>
+            <a class="btn btn-outline-dark btn-app" th:href="@{/issuer/ipos/new}">
+                <i class="bi bi-plus-circle me-1"></i>Create IPO
+            </a>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" th:href="@{/issuer/company}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-primary-subtle text-primary-emphasis">
+                                    <i class="bi bi-building-gear"></i>
+                                </span>
+                                <div class="fw-semibold">Company Profile</div>
+                            </div>
+                            <div class="text-muted small">
+                                Update company details used in IPO issuance.
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" th:href="@{/issuer/ipos}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-warning-subtle text-warning-emphasis">
+                                    <i class="bi bi-calendar2-event"></i>
+                                </span>
+                                <div class="fw-semibold">My IPOs</div>
+                            </div>
+                            <div class="text-muted small">
+                                View IPOs, edit before open date, track status.
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" th:href="@{/ipos}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-success-subtle text-success-emphasis">
+                                    <i class="bi bi-globe2"></i>
+                                </span>
+                                <div class="fw-semibold">Public IPO View</div>
+                            </div>
+                            <div class="text-muted small">
+                                See how investors view your IPO listing.
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="p-3 rounded-3 bg-light border">
+            <div class="fw-semibold mb-1">
+                <i class="bi bi-lightbulb me-1"></i>Issuer Rules (Quick)
+            </div>
+            <ul class="small text-muted mb-0">
+                <li>You can update IPO only <b>before open date</b>.</li>
+                <li>Quota percentages must total <b>100%</b>.</li>
+                <li>Investors subscribe only within <b>open → close</b> window.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

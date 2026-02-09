@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('IPO List')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="app-card p-4 p-md-5 app-fade-up">
+
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+            <div>
+                <h3 class="app-section-title mb-1">IPOs</h3>
+                <div class="app-muted">Browse all IPOs and open details to subscribe (Investor).</div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+                <!-- Back to correct dashboard -->
+                <a th:if="${nav.admin}" class="btn btn-outline-dark btn-app" th:href="@{/admin/dashboard}">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+                </a>
+                <a th:if="${nav.issuer}" class="btn btn-outline-dark btn-app" th:href="@{/issuer/dashboard}">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+                </a>
+                <a th:if="${nav.investor}" class="btn btn-outline-dark btn-app" th:href="@{/investor/dashboard}">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+                </a>
+                <a th:if="${!nav.authenticated}" class="btn btn-outline-light btn-app" th:href="@{/login}">
+                    <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                </a>
+
+                <!-- Quick links -->
+                <a th:if="${nav.issuer}" class="btn btn-warning btn-app" th:href="@{/issuer/ipos/new}">
+                    <i class="bi bi-plus-circle me-1"></i>Create IPO
+                </a>
+                <a th:if="${nav.admin}" class="btn btn-outline-dark btn-app" th:href="@{/admin/allotment}">
+                    <i class="bi bi-shuffle me-1"></i>Allotment
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(ipos)}" class="alert alert-info mb-0">
+            <i class="bi bi-info-circle me-1"></i>No IPOs found.
+        </div>
+
+        <div th:if="${!#lists.isEmpty(ipos)}" class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Issue Price</th>
+                    <th>Lot</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                    <th>Status</th>
+                    <th class="text-end">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ipo : ${ipos}">
+                    <td class="fw-semibold" th:text="${ipo.ipoId}"></td>
+                    <td th:text="${ipo.company != null ? ipo.company.companyName : 'N/A'}"></td>
+                    <td th:text="${ipo.issuePrice}"></td>
+                    <td th:text="${ipo.lotSize}"></td>
+                    <td th:text="${ipo.openDate}"></td>
+                    <td th:text="${ipo.closeDate}"></td>
+                    <td>
+                        <span class="badge"
+                              th:classappend="${ipo.status.name()=='OPEN'} ? ' text-bg-success' :
+                                              (${ipo.status.name()=='CLOSED'} ? ' text-bg-warning' : ' text-bg-secondary')"
+                              th:text="${ipo.status}">
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-dark btn-app" th:href="@{/ipos/{id}(id=${ipo.ipoId})}">
+                            View <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

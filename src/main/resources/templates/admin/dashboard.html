@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('Admin Dashboard')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="app-card p-4 p-md-5 app-fade-up">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+            <div>
+                <h3 class="app-section-title mb-1">Admin Dashboard</h3>
+                <div class="app-muted">
+                    Manage IPO lifecycle: close IPO, allotment, refunds, compliance and audit.
+                </div>
+            </div>
+            <a class="btn btn-outline-dark btn-app" th:href="@{/ipos}">
+                <i class="bi bi-list-ul me-1"></i>View IPOs
+            </a>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="text-decoration-none" th:href="@{/admin/allotment}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-warning-subtle text-warning-emphasis">
+                                    <i class="bi bi-shuffle"></i>
+                                </span>
+                                <div class="fw-semibold">Allotment</div>
+                            </div>
+                            <div class="text-muted small">Close IPOs and run category-wise lottery.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="text-decoration-none" th:href="@{/admin/compliance}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-primary-subtle text-primary-emphasis">
+                                    <i class="bi bi-clipboard-check"></i>
+                                </span>
+                                <div class="fw-semibold">Compliance</div>
+                            </div>
+                            <div class="text-muted small">Generate and view compliance report records.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="text-decoration-none" th:href="@{/admin/audit}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-dark-subtle text-dark-emphasis">
+                                    <i class="bi bi-journal-text"></i>
+                                </span>
+                                <div class="fw-semibold">Audit Trail</div>
+                            </div>
+                            <div class="text-muted small">View latest 200 auditable events.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- ✅ PASTE THE "CREATE USER" CARD HERE -->
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="text-decoration-none" th:href="@{/admin/users/new}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-primary-subtle text-primary-emphasis">
+                                    <i class="bi bi-person-plus"></i>
+                                </span>
+                                <div class="fw-semibold">Create User</div>
+                            </div>
+                            <div class="text-muted small">Create Issuer/Admin accounts.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a class="text-decoration-none" th:href="@{/ipos}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-success-subtle text-success-emphasis">
+                                    <i class="bi bi-building"></i>
+                                </span>
+                                <div class="fw-semibold">Browse IPOs</div>
+                            </div>
+                            <div class="text-muted small">Open IPO list and view details.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row g-3">
+            <div class="col-12 col-lg-7">
+                <div class="p-3 rounded-3 bg-light border">
+                    <div class="fw-semibold mb-1">
+                        <i class="bi bi-info-circle me-1"></i>Tip
+                    </div>
+                    <div class="text-muted small">
+                        Recommended flow: <b>Close IPO</b> → <b>Run Allotment</b> → <b>Generate Compliance</b>.
+                        Audit trail will record each step.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                <div class="p-3 rounded-3 bg-dark text-light border border-dark">
+                    <div class="fw-semibold mb-1">
+                        <i class="bi bi-shield-check me-1"></i>Security
+                    </div>
+                    <div class="small text-white-50">
+                        Session-based auth, CSRF protection on all forms, RBAC at routes.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('Investor Dashboard')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="app-card p-4 p-md-5 app-fade-up">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+            <div>
+                <h3 class="app-section-title mb-1">Investor Dashboard</h3>
+                <div class="app-muted">
+                    Browse IPOs, subscribe, track allotment and refunds.
+                </div>
+            </div>
+            <a class="btn btn-warning btn-app" th:href="@{/ipos}">
+                <i class="bi bi-search me-1"></i>Explore IPOs
+            </a>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" th:href="@{/ipos}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-primary-subtle text-primary-emphasis">
+                                    <i class="bi bi-list-ul"></i>
+                                </span>
+                                <div class="fw-semibold">IPO List</div>
+                            </div>
+                            <div class="text-muted small">View open and upcoming IPOs.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" th:href="@{/investor/subscriptions}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-warning-subtle text-warning-emphasis">
+                                    <i class="bi bi-receipt"></i>
+                                </span>
+                                <div class="fw-semibold">My Subscriptions</div>
+                            </div>
+                            <div class="text-muted small">Check status, allotment and refunds.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <a class="text-decoration-none" th:href="@{/ipos}">
+                    <div class="card border-0 shadow-sm h-100 hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="icon-bubble bg-success-subtle text-success-emphasis">
+                                    <i class="bi bi-cash-coin"></i>
+                                </span>
+                                <div class="fw-semibold">Refunds</div>
+                            </div>
+                            <div class="text-muted small">Refunds appear after allotment run by admin.</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="p-3 rounded-3 bg-light border">
+            <div class="fw-semibold mb-1">
+                <i class="bi bi-info-circle me-1"></i>Investor Rules (Quick)
+            </div>
+            <ul class="small text-muted mb-0">
+                <li>Quantity must be a multiple of <b>lot size</b>.</li>
+                <li>Only one subscription per IPO is allowed.</li>
+                <li>Retail category enforces <b>max application amount</b>.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

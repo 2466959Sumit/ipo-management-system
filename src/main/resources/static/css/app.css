@@ -1,0 +1,119 @@
+:root{
+  --app-bg0:#070b14;
+  --app-bg1:#0b1220;
+  --app-card: rgba(255,255,255,.96);
+  --app-border: rgba(255,255,255,.10);
+  --app-shadow: 0 18px 55px rgba(0,0,0,.35);
+  --app-accent: #ffc107;
+}
+
+/* App background */
+body.app-bg{
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 700px at 15% 10%, rgba(255,193,7,.13), transparent 60%),
+    radial-gradient(900px 600px at 85% 25%, rgba(13,110,253,.10), transparent 55%),
+    linear-gradient(180deg, var(--app-bg0) 0%, var(--app-bg1) 100%);
+}
+
+.app-nav{
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 26px rgba(0,0,0,.25);
+}
+
+.app-logo{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border-radius: 10px;
+  background: rgba(255,193,7,.15);
+  border: 1px solid rgba(255,193,7,.35);
+  color: var(--app-accent);
+  font-weight: 800;
+  letter-spacing: .4px;
+}
+
+.app-shell{
+  padding: 28px 0 42px;
+}
+
+.app-card{
+  background: var(--app-card);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 18px;
+  box-shadow: var(--app-shadow);
+}
+
+.app-section-title{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.app-muted{
+  color: rgba(0,0,0,.6);
+}
+
+.app-divider{
+  height:1px;
+  background: rgba(0,0,0,.08);
+  margin: 18px 0;
+}
+
+/* Subtle entrance animation without JS */
+.app-fade-up{
+  animation: appFadeUp .5s ease both;
+}
+@keyframes appFadeUp{
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.btn-app{
+  border-radius: 12px;
+}
+/* Dashboard card micro-interactions */
+.hover-lift{
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.hover-lift:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.18) !important;
+}
+
+.icon-bubble{
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+/* Better tables on cards */
+.table thead th{
+  white-space: nowrap;
+}
+.table td, .table th{
+  vertical-align: middle;
+}
+
+/* Make table rows feel interactive */
+.table-hover tbody tr{
+  transition: background-color .12s ease;
+}
+
+/* Fix for any overlay blocking clicks */
+.nav, .nav-pills, .nav-item, .nav-link {
+  pointer-events: auto !important;
+}
+.app-card {
+  position: relative;
+  z-index: 0;
+}
+.nav-pills .nav-link {
+  position: relative;
+  z-index: 5;
+}

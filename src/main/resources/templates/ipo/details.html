@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/head :: head('IPO Details')"></th:block>
+<body class="app-bg">
+
+<div th:replace="layout/nav :: navbar"></div>
+
+<div class="container app-shell">
+    <div class="row g-3">
+        <div class="col-12 col-lg-8">
+            <div class="app-card p-4 p-md-5 app-fade-up">
+                <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+                    <div>
+                        <h3 class="app-section-title mb-1">
+                            IPO #<span th:text="${ipo.ipoId}"></span>
+                        </h3>
+                        <div class="text-muted">
+                            <i class="bi bi-building me-1"></i>
+                            <span th:text="${ipo.company != null ? ipo.company.companyName : 'N/A'}"></span>
+                        </div>
+                    </div>
+
+                    <span class="badge fs-6"
+                          th:classappend="${ipo.status.name()=='OPEN'} ? ' text-bg-success' :
+                                          (${ipo.status.name()=='CLOSED'} ? ' text-bg-warning' : ' text-bg-secondary')"
+                          th:text="${ipo.status}">
+                    </span>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <div class="small text-muted">Issue Price</div>
+                            <div class="fw-semibold fs-5" th:text="${ipo.issuePrice}"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <div class="small text-muted">Lot Size</div>
+                            <div class="fw-semibold fs-5" th:text="${ipo.lotSize}"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <div class="small text-muted">Total Shares Offered</div>
+                            <div class="fw-semibold fs-5" th:text="${ipo.totalSharesOffered}"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="p-3 rounded-3 bg-light border">
+                            <div class="small text-muted">Retail Max Amount</div>
+                            <div class="fw-semibold fs-5" th:text="${ipo.retailMaxApplicationAmount}"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-divider"></div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-calendar-event text-primary fs-4"></i>
+                            <div>
+                                <div class="small text-muted">Open Date</div>
+                                <div class="fw-semibold" th:text="${ipo.openDate}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-calendar-x text-danger fs-4"></i>
+                            <div>
+                                <div class="small text-muted">Close Date</div>
+                                <div class="fw-semibold" th:text="${ipo.closeDate}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-divider"></div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <a class="btn btn-outline-dark btn-app" th:href="@{/ipos}">
+                        <i class="bi bi-arrow-left me-1"></i>Back
+                    </a>
+
+                    <a th:if="${#authorization.expression('hasRole(''INVESTOR'')')}"
+                       class="btn btn-warning btn-app"
+                       th:href="@{/ipos/{id}/subscribe(id=${ipo.ipoId})}">
+                        <i class="bi bi-cash-coin me-1"></i>Subscribe
+                    </a>
+
+                    <a th:if="${#authorization.expression('hasRole(''ISSUER'')')}"
+                       class="btn btn-outline-primary btn-app"
+                       th:href="@{/issuer/ipos/{id}/edit(id=${ipo.ipoId})}">
+                        <i class="bi bi-pencil-square me-1"></i>Edit IPO
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="app-card p-4 app-fade-up">
+                <h5 class="fw-semibold mb-2"><i class="bi bi-info-circle me-1"></i>Quick Notes</h5>
+                <ul class="small text-muted mb-0">
+                    <li>Investor can subscribe only within open-close window.</li>
+                    <li>Quantity must be multiple of lot size.</li>
+                    <li>Retail category enforces max application amount.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
